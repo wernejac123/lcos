@@ -1,6 +1,20 @@
 # lcos
-FORTRAN 77 program to solve triangles using the laws of cosines. Caution: there are rounding errors appearing at 5 to 7 decimal places despite variables being DOUBLEPRECISION
+FORTRAN 77 program to solve triangles using the laws of cosines.
+
+When prompted with "SOLVE FOR:" enter either 'A', 'B', 'C', 'X', 'Y' or 'Z' enclosed in single
+
+quotes to tell the program it is a CHARACTER. It will crash the program in FreeDOS if you
+
+enter it without ' ' around it; Linux it doesn't seem to matter but still a good idea. To
+
+keep double precision, enter all numbers in the format 3.0D0 seperated by either a space or
+
+commas. If you enter it as 3.0, it will cause rounding erros and is essentially calcutating
+
+as REAL not DOUBLEPRECISION. 
 
 This has been tested in both FreeDOS and Linux.
 
-BUG: as of Apr 5, 2026 there is a bug where my programs are losing precision (calculating numbers as REAL instead of DOUBLEPRECISON). NOTE TO SELF: fix this by using D like 3.0D0 (DOUBLEPRECISION engineering notation) for all numbers including input from user)
+ The Bug I had earlier with doubleprecision numbers being truncated to real has been fixed.
+
+ I have not tested it yet in FreeDOS with these new changes. I will update this README when I do.
