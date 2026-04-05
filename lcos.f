@@ -1,11 +1,17 @@
 C PROGRAM TO CALCULATE ANGLES AND SIDES OF A TRIANGLE USING THE
 C LAWS OF COSINES
+C VERSION 2
+C APPLIED BUG FIXES TO OBTAIN DOUBLEPRECISION WITHOUT PROGRAM 
+C TRUNCATING TO REAL
 
       PROGRAM LCOS
       IMPLICIT NONE
       CHARACTER CIN
       DOUBLEPRECISION A,B,C,X,Y,Z,PI
-      PARAMETER(PI=3.141592654)
+      PARAMETER(PI=3.141592654D0)
+
+C BUG FIX1: WRITE PI WITH D 
+
 C A,B,C SIDES
 C X,Y,Z ANGLES IN DEGREES
 
@@ -23,61 +29,88 @@ C WHAT ARE WE LOOKING FOR
         READ(*,*) B,C,X
 
 C CONVERT X FROM DEGREES TO RADIANS
-        X=X*(PI/180.0)
+        X=X*(PI/1.8D2)
 
-        A=DSQRT(B**2+C**2-2.0*B*C*DCOS(X))
+C BUG FIX2: 180.0 AS 1.8D2
+
+        A=DSQRT(B**2+C**2-2.0D0*B*C*DCOS(X))
+
+C BUG FIX3: 2.0D0 INSTEAD OF 2.0
+
         WRITE(*,900) 'A=',A
       ELSEIF(CIN .EQ. 'B') THEN
         WRITE(*,*) 'A,C,Y'
         READ(*,*) A,C,Y
 
 C CONVERT Y FROM DEGREES TO RADIANS
-        Y=Y*(PI/180.0)
+        Y=Y*(PI/1.8D2)
 
-        B=DSQRT(A**2+C**2-2.0*A*C*DCOS(Y))
+C BUG FIX4: 180.0 AS 1.8D2
+
+        B=DSQRT(A**2+C**2-2.0D0*A*C*DCOS(Y))
+
+C BUG FIX5: 2.0D0 INSTEAD OF 2.0
+
         WRITE(*,900) 'B=',B
       ELSEIF(CIN .EQ. 'C') THEN
         WRITE(*,*) 'A,B,Z'
         READ(*,*) A,B,Z
  
 C CONVERT Z FROM DEGREES TO ANGLES
-        Z=Z*(PI/180.0)
+        Z=Z*(PI/1.8D2)
 
-        C=DSQRT(A**2+B**2-2.0*A*B*DCOS(Z))
+C BUG FIX6: 180.0 AS 1.8D2
+
+        C=DSQRT(A**2+B**2-2.0D0*A*B*DCOS(Z))
+
+C BUG FIX7: 2.0D0 INSTEAD OF 2.0
         WRITE(*,900) 'C=',C
       ELSEIF(CIN .EQ. 'X') THEN
         WRITE(*,*) 'A,B,C'
         READ(*,*) A,B,C
-        X=DACOS((A**2-B**2-C**2)/(-2.0*B*C))
+        X=DACOS((A**2-B**2-C**2)/(-2.0D0*B*C))
+
+C BUG FIX8: -2.0D0 INSTEAD OF -2.0
          
 C CONVERT X FROM RADIANS TO DEGREES
-        X=X*(180.0/PI)
+        X=X*(1.8D2/PI)
+
+C BUG FIX9: 1.8D2 INSTEAD OF 180.0
 
         WRITE(*,950) 'X=',X
       ELSEIF(CIN .EQ. 'Y') THEN
         WRITE(*,*) 'A,B,C'
         READ(*,*) A,B,C
-        Y=DACOS((B**2-A*2-C**2)/(-2.0*A*C))
+        Y=DACOS((B**2-A**2-C**2)/(-2.0D0*A*C))
+
+C BUG FIX10: -2.0D0 INSTEAD OF -2.0
 
 C CONVERT Y FROM RADIANS TO DEGREES
-        Y=Y*(180.0/PI)
+        Y=Y*(1.8D2/PI)
+
+C BUG FIX11: 1.8D2 INSTEAD OF 180.0 
 
         WRITE(*,950) 'Y=',Y
       ELSEIF(CIN .EQ. 'Z') THEN
         WRITE(*,*) 'A,B,C'
         READ(*,*) A,B,C
-        Z=DACOS((C**2-A**2-B**2)/(-2.0*A*B))
+        Z=DACOS((C**2-A**2-B**2)/(-2.0D0*A*B))
+
+C BUG FIX12: -2.0D0 INSTEAD OF -2.0
 
 C CONVERT Z FROM RADIANS TO DEGREES
-        Z=Z*(180.0/PI)
+        Z=Z*(1.8D2/PI)
 
+C BUG FIX 13: 1.8D2 INSTAED OF 180.0
         WRITE(*,950) 'Z=',Z
       ELSE
         WRITE(*,*) 'INVALID'
         GOTO 10
       ENDIF
 
-900   FORMAT(A2,X,F12.7)
-950   FORMAT(A2,X,F12.7,' DEGS')
+C INCREASE PRECISION 17.9 FROM 12.7
+
+900   FORMAT(A2,X,F17.9)
+950   FORMAT(A2,X,F17.9,' DEGS')
       STOP
       END
