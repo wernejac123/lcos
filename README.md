@@ -9,7 +9,7 @@ enter it without ' ' around it; Linux it doesn't seem to matter but still a good
 
 keep double precision, enter all numbers in the format 3.0D0 seperated by either a space or
 
-commas. If you enter it as 3.0, it will cause rounding erros and is essentially calcutating
+commas. If you enter it as 3.0, it will cause rounding errors and is essentially calcutating
 
 as REAL not DOUBLEPRECISION. 
 
