@@ -15,11 +15,11 @@ as REAL not DOUBLEPRECISION.
 
 This has been tested in both FreeDOS and Linux. In one test it resulted in acos(-1)* (180/pi)
 
-which results 180 degrees on a ti83 calculator, but my fortran program showed 179.999....
+which results in 180 degrees on a ti83 calculator, but my FORTRAN program showed 179.999....
 
 with slightly less acuracy than other numbers I tested. I tried to test a variety of numbers
 
-but i did not try extremely large or extremely small numbers. Sometimes a calculation results
+but I did not try extremely large or extremely small numbers. Sometimes a calculation results
 
 in 0.0000000... degrees which I am assuming means the dimensions for the triangle are
 
