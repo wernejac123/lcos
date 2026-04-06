@@ -13,8 +13,18 @@ commas. If you enter it as 3.0, it will cause rounding errors and is essentially
 
 as REAL not DOUBLEPRECISION. 
 
-This has been tested in both FreeDOS and Linux.
+This has been tested in both FreeDOS and Linux. In one test it resulted in acos(-1)* (180/pi)
 
- The Bug I had earlier with doubleprecision numbers being truncated to real has been fixed.
+which results 180 degrees on a ti83 calculator, but my fortran program showed 179.999....
 
- I have not tested it yet in FreeDOS with these new changes. I will update this README when I do.
+with slightly less acuracy than other numbers I tested. I tried to test a variety of numbers
+
+but i did not try extremely large or extremely small numbers. Sometimes a calculation results
+
+in 0.0000000... degrees which I am assuming means the dimensions for the triangle are
+
+physically impossible but I can not say for sure). I still wouldn't count on this program
+
+for extremely important calculations (or at least double check it with a calculator).
+
+The Bug I had earlier with double precision numbers being truncated to real has been fixed.
